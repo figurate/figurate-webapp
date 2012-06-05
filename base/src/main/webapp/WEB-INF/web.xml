@@ -4,13 +4,46 @@
       version="2.4">
       
   <display-name>Figurate</display-name>
+      
+    <filter>
+       <filter-name>UrlRewriteFilter</filter-name>
+       <filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>
+    </filter>
+    <filter>
+       <filter-name>RepositoryFilter</filter-name>
+       <filter-class>org.mnode.figurate.base.RepositoryFilter</filter-class>
+    </filter>
+    
+    <filter-mapping>
+       <filter-name>UrlRewriteFilter</filter-name>
+       <url-pattern>/*</url-pattern>
+       <dispatcher>REQUEST</dispatcher>
+       <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+    <filter-mapping>
+       <filter-name>RepositoryFilter</filter-name>
+       <url-pattern>/*</url-pattern>
+       <dispatcher>REQUEST</dispatcher>
+       <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+  
+      <listener>
+        <listener-class>org.mnode.figurate.base.OsgiLoaderListener</listener-class>
+      </listener>
+      <listener>
+        <listener-class>org.mnode.figurate.base.CamelLoaderListener</listener-class>
+      </listener>
+      <listener>
+        <listener-class>org.mnode.figurate.base.RepositoryLoaderListener</listener-class>
+      </listener>
+  
     <servlet>
       <servlet-name>Groovlet</servlet-name>
       <servlet-class>groovy.servlet.GroovyServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Template</servlet-name>
-        <servlet-class>groovy.servlet.TemplateServlet</servlet-class>
+        <servlet-class>org.mnode.figurate.base.FigurateTemplateServlet</servlet-class>
       <init-param>
         <param-name>verbose</param-name>
         <param-value>true</param-value>
