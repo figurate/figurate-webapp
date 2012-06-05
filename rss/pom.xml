@@ -1,0 +1,69 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>figurate</artifactId>
+        <groupId>org.mnode.figurate</groupId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>..</relativePath>
+    </parent>
+    <artifactId>rss</artifactId>
+    <name>Figurate RSS</name>
+    <description>Support for ingesting RSS feeds</description>
+
+    <build>
+        <plugins>
+            <plugin>
+              <artifactId>maven-jar-plugin</artifactId>
+              <configuration>
+                <archive>  
+                  <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+                </archive> 
+              </configuration>
+            </plugin>  
+            <plugin>   
+              <groupId>org.apache.felix</groupId>
+              <artifactId>maven-bundle-plugin</artifactId>
+              <executions>
+                <execution>
+                  <id>bundle-manifest</id>
+                  <phase>process-classes</phase>
+                  <goals>    
+                    <goal>manifest</goal>
+                  </goals>   
+                </execution>
+              </executions>
+            </plugin>
+        
+        <!-- 
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
+                <!- 
+                <configuration>
+                    <instructions>
+                        <Export-Package>org.foo.myproject.api</Export-Package>
+                        <Private-Package>org.foo.myproject.*</Private-Package>
+                        <Bundle-Activator>org.foo.myproject.impl1.Activator</Bundle-Activator>
+                    </instructions>
+                </configuration>
+                 ->
+                <configuration>
+                    <instructions>
+                        <Bundle-Activator>org.mnode.figurate.rss.Activator</Bundle-Activator>
+                    </instructions>
+                </configuration>
+            </plugin>
+             -->
+        </plugins>
+        
+    </build>
+    
+    <dependencies>
+      <dependency>
+          <groupId>org.codehaus.groovy</groupId>
+          <artifactId>groovy-all</artifactId>
+      </dependency>
+    </dependencies>
+</project>
