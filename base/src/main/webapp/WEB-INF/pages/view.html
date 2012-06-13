@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<% def node = request.getAttribute('contextNode') %>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="/layout.css" />
+<script src="/effects.js"></script>
+<link rel="stylesheet" href="/style.css" />
+<script src="/tinybox.js"></script>
+<title>${node['mn:title'].string} - Figurate</title>
+</head>
+<body onload="javascript:fadeEffect.init('footer', 1, 75)">
+<div class="wrapper">
+<% include '/WEB-INF/includes/header.gtpl' %>
+<% node.nodes.each { child -> %>
+    <a href='/view<%= contextPath(child.path)%>'>${child['mn:title'].string}</a>
+<% } %>
+<ul>
+
+        <li onclick="TINY.box.show({html:'This is a warning!',animate:false,close:false,boxid:'error',top:5})">No Animation, No Close Button, Auto Width/Height, Custom Styling</li>
+
+        <li onclick="TINY.box.show({url:'post.php',post:'id=16',width:200,height:100,opacity:20,topsplit:3})">Ajax Post, Fixed Width/Height, Light Mask, Custom Vertical Split</li>
+
+        <li onclick="TINY.box.show({html:'The entry has been updated successfully!',animate:false,close:false,mask:false,boxid:'success',autohide:2,top:-14,left:-17})">Custom Position, No Mask, Auto-Hide</li>
+
+        <li onclick="TINY.box.show({iframe:'http://www.scriptiny.com/',boxid:'frameless',width:750,height:450,fixed:false,maskid:'bluemask',maskopacity:40,closejs:function(){closeJS()}})">iFrame, Blue Mask, Absolute Position, Frameless, Close Callback</li>
+
+        <li onclick="TINY.box.show({url:'advanced.html',width:300,height:150})">Ajax, Advanced Functions</li>
+
+        <li onclick="TINY.box.show({image:'images/rhino.jpg',boxid:'frameless',animate:true,openjs:function(){openJS()}})">Image, Load Callback</li>
+
+    </ul>
+
+</div>
+<% include '/WEB-INF/includes/footer.gtpl' %>
+</body>
+</html>

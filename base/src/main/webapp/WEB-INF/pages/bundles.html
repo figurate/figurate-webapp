@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<% def bundles = context.getAttribute('osgi').bundleContext.bundles %>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="/layout.css" />
+<title>Bundles - Figurate</title>
+</head>
+<body>
+<div class="wrapper">
+<% include '/WEB-INF/includes/header.gtpl' %>
+<table><tbody>
+<% bundles.each { bundle -> %>
+    <tr>
+        <td><%= bundle.symbolicName %></td>
+        <td><%= bundle.headers.get('Bundle-Version') %></td>
+        <td><%= bundleState(bundle.state) %></td>
+        <td>
+	        <a href="/bundlestart.groovy?id=<%= bundle.bundleId%>">Start</a>
+	        <a href="/bundlestop.groovy?id=<%= bundle.bundleId%>">Stop</a>
+	        <a href="/bundleremove.groovy?id=<%= bundle.bundleId%>">Remove</a>
+	    </td>
+    </tr>
+<% } %>
+</tbody></table>
+<form action="/bundleadd.groovy" enctype="multipart/form-data" method="post">
+    <input type="file" name="datafile" size="40">
+    <input type="submit" value="Install"/>
+</form>
+</div>
+<% include '/WEB-INF/includes/footer.gtpl' %>
+</body>
+</html>
