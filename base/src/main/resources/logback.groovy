@@ -11,6 +11,8 @@ appender("CONSOLE", ConsoleAppender) {
     }
 }
 
+println "*** Application host: $hostname ***"
+if (!(hostname =~ /cloudbees/)) {
 appender("FILE", RollingFileAppender) {
     file = "${System.getProperty('user.home')}/.figurate/logs/figurate-base.log"
     append = true
@@ -25,6 +27,7 @@ appender("FILE", RollingFileAppender) {
     triggeringPolicy(SizeBasedTriggeringPolicy) {
         maxFileSize = '100KB'
     }
+}
 }
 
 root(Level.INFO, ["CONSOLE", "FILE"])
