@@ -1,6 +1,5 @@
-
- Figurate
-==========
+Figurate
+========
 
 The general idea of Figurate is to create an extensible and open platform for building a knowledge base. Typically
 organisations use multiple tools to manage documents, specifications, configurations, etc., which leads to a
